@@ -1,0 +1,94 @@
+{
+  "0xAa0362eCC584B985056E47812931270b99C91f9d": {
+    "name": "WBTC yVault",
+    "apr": 0,
+    "breakdown": []
+  },
+  "0x80c34BD3A3569E126e7055831036aa7b212cB159": {
+    "name": "USDC yVault",
+    "apr": 87.35013520820294,
+    "pools": [
+      "0x5F88Eeb3A5662489eB2D5DA9f0c73F03355F3009"
+    ],
+    "breakdown": [
+      {
+        "apr": 73.26784655318245,
+        "token": {
+          "address": "0x6E9C1F88a960fE63387eb4b71BC525a9313d8461",
+          "symbol": "KAT",
+          "decimals": 18
+        },
+        "weight": 0.8387834360936623
+      },
+      {
+        "apr": 14.082288655020486,
+        "token": {
+          "address": "0x17BFF452dae47e07CeA877Ff0E1aba17eB62b0aB",
+          "symbol": "SUSHI",
+          "decimals": 18
+        },
+        "weight": 0.1612165639063377
+      },
+      {
+        "apr": 0,
+        "token": {
+          "address": "0x999BAcD74539e19e3371E51839707b59A682B258",
+          "symbol": "AglaMerkl",
+          "decimals": 6
+        },
+        "weight": 0
+      }
+    ]
+  },
+  "0x9A6bd7B6Fd5C4F87eb66356441502fc7dCdd185B": {
+    "name": "USDT yVault",
+    "apr": 367.29051409884806,
+    "pools": [
+      "0x5F88Eeb3A5662489eB2D5DA9f0c73F03355F3009"
+    ],
+    "breakdown": [
+      {
+        "apr": 308.0771994604395,
+        "token": {
+          "address": "0x6E9C1F88a960fE63387eb4b71BC525a9313d8461",
+          "symbol": "KAT",
+          "decimals": 18
+        },
+        "weight": 0.8387834360936623
+      },
+      {
+        "apr": 59.21331463840856,
+        "token": {
+          "address": "0x17BFF452dae47e07CeA877Ff0E1aba17eB62b0aB",
+          "symbol": "SUSHI",
+          "decimals": 18
+        },
+        "weight": 0.1612165639063377
+      },
+      {
+        "apr": 0,
+        "token": {
+          "address": "0x999BAcD74539e19e3371E51839707b59A682B258",
+          "symbol": "AglaMerkl",
+          "decimals": 6
+        },
+        "weight": 0
+      }
+    ]
+  },
+  "0x93Fec6639717b6215A48E5a72a162C50DCC40d68": {
+    "name": "AUSD yVault",
+    "apr": 0,
+    "breakdown": []
+  },
+  "0x8Fb1c10Ad4417EcA341a1D903Ff437d25ff87a4e": {
+    "name": "USDS yVault",
+    "apr": 0,
+    "breakdown": []
+  },
+  "0xE007CA01894c863d7898045ed5A3B4Abf0b18f37": {
+    "name": "ETH yVault",
+    "apr": 0,
+    "breakdown": []
+  }
+}

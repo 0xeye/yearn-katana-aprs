@@ -35,20 +35,16 @@ export class MorphoAprCalculator implements APRCalculator {
 
     const allSteerStrategies = _.flatten(Object.values(vaultToStrategies));
 
-    // Get pool mappings for all strategies
+    // Get vaults for all strategies
     const strategyToVault = await this.contractReader.getMorphoVaultsFromStrategies(allSteerStrategies);
 
+    // filter to whats needed for merkl
 
-    // all morpho vaults within vault compounder
-    console.log("morphoVaults", strategyToVault);
+    // return
 
-    // TODO: Implement Morpho reward calculations
-    // This is a placeholder for future implementation
 
-    // Will fetch Morpho opportunities when implemented
-    // const morphoOpportunities = await this.merklApi.getMorphoOpportunities();
+    console.log('Morpho reward calculation not yet implemented', strategyToVault);
 
-    console.log('Morpho reward calculation not yet implemented');
-    return {};
+    return {}
   }
 }
