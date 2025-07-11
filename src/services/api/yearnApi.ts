@@ -59,7 +59,7 @@ export class YearnApiService {
       .map((strategy): string => strategy.address);
   }
 
-  getActiveSteerLPStrategies(vault: YearnVault): string[] {
+  getActiveSushiStrategies(vault: YearnVault): string[] {
     return vault.strategies
       .filter((strategy): boolean =>
         Boolean(

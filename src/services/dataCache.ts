@@ -1,11 +1,12 @@
-import fs from 'fs/promises';
+import fs from 'node:fs/promises';
+import path from 'node:path';
 import _ from 'lodash';
-import path from 'path';
+import { isAddressEqual } from 'viem';
 import { config } from '../config';
-import type { YearnRewardToken, YearnVault } from '../types';
+import type { YearnVault } from '../types';
 import { YearnApiService } from './api/yearnApi';
 import { MorphoAprCalculator } from './aprs/morphoAprCalculator';
-import { SteerAprCalculator } from './aprs/steerAprCalculator';
+import { SushiAprCalculator } from './aprs/sushiAprCalculator';
 import { type RewardCalculatorResult, TokenBreakdown } from './aprs/types';
 
 export interface VaultAPRData {
@@ -24,13 +25,13 @@ export { TokenBreakdown };
 export class DataCacheService {
   private cacheFilePath: string;
   private yearnApi: YearnApiService;
-  private steerCalculator: SteerAprCalculator;
+  private sushiCalculator: SushiAprCalculator;
   private morphoCalculator: MorphoAprCalculator;
 
   constructor() {
     this.cacheFilePath = path.join(process.cwd(), 'vault-apr-data.json');
     this.yearnApi = new YearnApiService();
-    this.steerCalculator = new SteerAprCalculator();
+    this.sushiCalculator = new SushiAprCalculator();
     this.morphoCalculator = new MorphoAprCalculator();
   }
 
@@ -41,7 +42,7 @@ export class DataCacheService {
 
       // Get APR data from each calculator
       const [sushiAPRs, morphoAPRs] = await Promise.all([
-        this.steerCalculator.calculateVaultAPRs(vaults),
+        this.sushiCalculator.calculateVaultAPRs(vaults),
         this.morphoCalculator.calculateVaultAPRs(vaults),
       ]);
 
@@ -49,11 +50,10 @@ export class DataCacheService {
       const aprDataCache: APRDataCache = _.chain(vaults)
         .map((vault) => {
           try {
-            // Flatten in case any results are arrays (should be flat arrays of objects)
-            const allResults = [
-              ...(Array.isArray(sushiAPRs[vault.address]) ? sushiAPRs[vault.address] : []),
-              ...(Array.isArray(morphoAPRs[vault.address]) ? morphoAPRs[vault.address] : []),
-            ].flat();
+            const allResults = _.chain([sushiAPRs[vault.address], morphoAPRs[vault.address]])
+              .flattenDeep()
+              .compact()
+              .value();
 
             if (allResults.length === 0) {
               return [
@@ -121,48 +121,58 @@ export class DataCacheService {
     // Default FDV value
     const FDV = 1_000_000_000;
 
-    // Calculate blended APR for the vault (katanaRewardsAPR)
-    let totalApr = 0;
-    let totalDebtRatio = 0;
-
     // Build new strategies array with appended data from results
-    const newStrategies = (vault.strategies || []).map((strat) => {
-      if (!strat.address || (strat.status && String(strat.status).toLowerCase() !== 'active')) {
-        return strat;
+    const strategiesWithRewards = (vault.strategies || []).map((strat) => {
+      if (!strat.address || strat.status?.toLowerCase() !== 'active') {
+        return { strategy: strat, debtRatio: 0, strategyRewardsAPR: 0 };
       }
-      const result = results.find(
-        (r) => r.strategyAddress && r.strategyAddress.toLowerCase() === strat.address.toLowerCase()
+
+      const result = results.find((r) =>
+        isAddressEqual(r.strategyAddress as `0x${string}`, strat.address as `0x${string}`)
       );
 
-      let strategyRewardsAPR = 0;
-      let rewardToken: YearnRewardToken | undefined = undefined;
-      let underlyingContract = undefined;
-      let assumedFDV = FDV;
-      if (result && result.breakdown) {
-        strategyRewardsAPR = result.breakdown.apr / 100;
-        rewardToken = result.breakdown.token;
-        underlyingContract = result.poolAddress;
-        rewardToken.assumedFDV = FDV;
-      }
-      // Use debtRatio from strat.details if available
-      const debtRatio = strat.details && typeof strat.details.debtRatio === 'number' ? strat.details.debtRatio : 0;
-      totalApr += strategyRewardsAPR * (debtRatio / 10000);
-      totalDebtRatio += debtRatio;
+      const strategyData = result?.breakdown
+        ? {
+            strategyRewardsAPR: result.breakdown.apr / 100,
+            rewardToken: { ...result.breakdown.token, assumedFDV: FDV },
+            underlyingContract: result.poolAddress,
+            assumedFDV: FDV,
+          }
+        : {
+            strategyRewardsAPR: 0,
+            rewardToken: undefined,
+            underlyingContract: undefined,
+            assumedFDV: FDV,
+          };
+
       return {
-        ...strat,
-        strategyRewardsAPR,
-        rewardToken,
-        underlyingContract,
-        assumedFDV,
+        strategy: {
+          ...strat,
+          ...strategyData,
+        },
+        debtRatio: strat.details?.debtRatio ?? 0,
+        strategyRewardsAPR: strategyData.strategyRewardsAPR,
       };
     });
 
-    // Compose the new vault object, only including fields from YearnVault type
-    let newApr = vault.apr ? { ...vault.apr } : undefined;
-    if (newApr) {
-      if (!newApr.extra) newApr.extra = {};
-      newApr.extra.katanaRewardsAPR = totalApr;
-    }
+    // Calculate totals using reduce
+    const { totalApr, totalDebtRatio: _totalDebtRatio } = strategiesWithRewards.reduce(
+      (acc, { debtRatio, strategyRewardsAPR }) => ({
+        totalApr: acc.totalApr + strategyRewardsAPR * (debtRatio / 10000),
+        totalDebtRatio: acc.totalDebtRatio + debtRatio,
+      }),
+      { totalApr: 0, totalDebtRatio: 0 }
+    );
+
+    const apr = vault.apr
+      ? {
+          ...vault.apr,
+          extra: {
+            ...(vault.apr.extra || {}),
+            katanaRewardsAPR: totalApr,
+          },
+        }
+      : undefined;
 
     const newVault: YearnVault = {
       address: vault.address,
@@ -171,8 +181,8 @@ export class DataCacheService {
       chainId: vault.chainId,
       token: vault.token,
       tvl: vault.tvl,
-      apr: newApr,
-      strategies: newStrategies,
+      apr,
+      strategies: strategiesWithRewards.map(({ strategy }) => strategy),
     };
 
     return newVault;

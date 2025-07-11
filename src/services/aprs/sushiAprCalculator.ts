@@ -6,7 +6,7 @@ import { ContractReaderService } from '../contractReader';
 import type { APRCalculator, RewardCalculatorResult } from './types';
 import { calculateStrategyAPR } from './utils';
 
-export class MorphoAprCalculator implements APRCalculator {
+export class SushiAprCalculator implements APRCalculator {
   private merklApi: MerklApiService;
   private yearnApi: YearnApiService;
   private contractReader: ContractReaderService;
@@ -18,12 +18,12 @@ export class MorphoAprCalculator implements APRCalculator {
   }
 
   async calculateVaultAPRs(vaults: YearnVault[]): Promise<Record<string, RewardCalculatorResult[]>> {
-    const morphoOpportunities = await this.merklApi.getMorphoOpportunities();
+    const sushiOpportunities = await this.merklApi.getSushiOpportunities();
 
     const vaultStrategyPairs = _.chain(vaults)
       .map((vault) => ({
         vault,
-        strategies: this.yearnApi.getActiveMorphoStrategies(vault),
+        strategies: this.yearnApi.getActiveSushiStrategies(vault),
       }))
       .filter(({ strategies }) => strategies.length > 0)
       .value();
@@ -33,13 +33,17 @@ export class MorphoAprCalculator implements APRCalculator {
       .fromPairs()
       .value();
 
-    const allMorphoStrategies = _.flatten(Object.values(vaultToStrategies));
+    const allSushiStrategies = _.chain(vaultToStrategies)
+      .values()
+      .flatten()
+      .map((addr) => addr.toLowerCase())
+      .value();
 
-    // Get vaults for all strategies and normalize
-    const strategyToVault = await this.contractReader.getMorphoVaultsFromStrategies(allMorphoStrategies).then((v) =>
+    // Get pool mappings for all strategies and normalize
+    const strategyToPool = await this.contractReader.getSushiPoolsFromStrategies(allSushiStrategies).then((v) =>
       _.chain(v)
         .toPairs()
-        .map(([k, v]) => [k.toLowerCase(), v])
+        .map(([k, v]) => [k.toLowerCase(), v.toLowerCase()])
         .fromPairs()
         .value()
     );
@@ -49,8 +53,8 @@ export class MorphoAprCalculator implements APRCalculator {
       .map(({ vault, strategies }) => {
         const vaultResults = _.chain(strategies)
           .map((strategy) => {
-            const poolAddress = strategyToVault[strategy.toLowerCase()];
-            return calculateStrategyAPR(strategy, poolAddress, morphoOpportunities, 'morpho');
+            const poolAddress = strategyToPool[strategy.toLowerCase()];
+            return calculateStrategyAPR(strategy, poolAddress, sushiOpportunities, 'sushi');
           })
           .compact()
           .value();

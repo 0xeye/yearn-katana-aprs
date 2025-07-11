@@ -5,7 +5,7 @@ import { wagmiConfig } from '../config';
 import { MORPHO_LP_ABI, STEER_LP_ABI, STRATEGY_ABI } from '../types/contracts';
 
 export class ContractReaderService {
-  async getSteerPoolsFromStrategies(strategyAddresses: string[]): Promise<Record<string, string>> {
+  async getSushiPoolsFromStrategies(strategyAddresses: string[]): Promise<Record<string, string>> {
     if (strategyAddresses.length === 0) {
       return {};
     }
