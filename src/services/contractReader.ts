@@ -78,20 +78,13 @@ export class ContractReaderService {
         functionName: 'vault',
       }));
 
-      console.log("morphoVaultCalls", morphoVaultCalls);
-
       const morphoVaultResults = await multicall(wagmiConfig, {
         contracts: morphoVaultCalls,
       });
 
       const validMorphoVaults: Record<string, string> = _.chain(morphoVaultResults)
         .map((result, index) =>
-          result.status
-            ? [
-                strategyAddresses[index],
-                getAddress(result.result as string),
-            ]
-            : null
+          result.status ? [strategyAddresses[index], getAddress(result.result as string)] : null
         )
         .compact()
         .fromPairs()

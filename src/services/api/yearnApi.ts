@@ -63,7 +63,7 @@ export class YearnApiService {
     return vault.strategies
       .filter((strategy): boolean =>
         Boolean(
-          strategy.name?.includes('Steer LP') &&
+          strategy.name?.includes('Steer') &&
             strategy.details?.totalDebt &&
             strategy.details.totalDebt !== '0' &&
             strategy.details.totalDebt !== '0x0'
@@ -86,6 +86,6 @@ export class YearnApiService {
   }
 
   getAutoCompoundedAPY(vault: YearnVault): number {
-    return vault.apy?.net_apy || 0;
+    return vault.apr?.netAPR || 0;
   }
 }
