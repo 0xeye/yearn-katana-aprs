@@ -11,9 +11,9 @@
       "decimals": 8
     },
     "tvl": {
-      "totalAssets": "17718426031",
-      "tvl": 20450607.324980203,
-      "price": 115420
+      "totalAssets": "17717948759",
+      "tvl": 20861998.76628455,
+      "price": 117745
     },
     "apr": {
       "type": "v3:new_averaged",
@@ -35,7 +35,7 @@
       "extra": {
         "stakingRewardsAPR": null,
         "gammaRewardAPR": null,
-        "katanaRewardsAPR": 0.0055042123792195564
+        "katanaRewardsAPR": 0.0064359137517658
       },
       "forwardAPR": {
         "type": "",
@@ -63,7 +63,7 @@
           "lastReport": 1751921225,
           "debtRatio": 28
         },
-        "strategyRewardsAPR": 0.4866027308961812,
+        "strategyRewardsAPR": 0.5409106788666042,
         "rewardToken": {
           "address": "0x6E9C1F88a960fE63387eb4b71BC525a9313d8461",
           "symbol": "KAT",
@@ -78,7 +78,7 @@
         "name": "Morpho Gauntlet WBTC Vault Compounder",
         "status": "active",
         "details": {
-          "totalDebt": "16968425096",
+          "totalDebt": "16967714791",
           "totalLoss": "0",
           "totalGain": "0",
           "performanceFee": 0,
@@ -107,7 +107,7 @@
           "lastReport": 1752081817,
           "debtRatio": 395
         },
-        "strategyRewardsAPR": 0.10485379070152528,
+        "strategyRewardsAPR": 0.1245914898971977,
         "rewardToken": {
           "address": "0x6E9C1F88a960fE63387eb4b71BC525a9313d8461",
           "symbol": "KAT",
@@ -143,9 +143,9 @@
       "decimals": 6
     },
     "tvl": {
-      "totalAssets": "71646441999569",
-      "tvl": 71636769.72989906,
-      "price": 0.999865
+      "totalAssets": "71452807802556",
+      "tvl": 71450378.40709071,
+      "price": 0.999966
     },
     "apr": {
       "type": "v3:new_averaged",
@@ -167,7 +167,7 @@
       "extra": {
         "stakingRewardsAPR": null,
         "gammaRewardAPR": null,
-        "katanaRewardsAPR": 0.014267664359356814
+        "katanaRewardsAPR": 0.016966656439377923
       },
       "forwardAPR": {
         "type": "",
@@ -195,7 +195,7 @@
           "lastReport": 1751921225,
           "debtRatio": 14
         },
-        "strategyRewardsAPR": 0.3867595849978349,
+        "strategyRewardsAPR": 0.22415388657292354,
         "rewardToken": {
           "address": "0x6E9C1F88a960fE63387eb4b71BC525a9313d8461",
           "symbol": "KAT",
@@ -216,7 +216,7 @@
           "totalGain": "0",
           "performanceFee": 0,
           "lastReport": 1751998977,
-          "debtRatio": 3056
+          "debtRatio": 3064
         },
         "strategyRewardsAPR": 0,
         "rewardToken": {
@@ -239,7 +239,7 @@
           "totalGain": "0",
           "performanceFee": 0,
           "lastReport": 1751998977,
-          "debtRatio": 2921
+          "debtRatio": 2929
         },
         "strategyRewardsAPR": 0,
         "rewardToken": {
@@ -261,9 +261,9 @@
           "totalGain": "0",
           "performanceFee": 1000,
           "lastReport": 1752093030,
-          "debtRatio": 1255
+          "debtRatio": 1258
         },
-        "strategyRewardsAPR": 0.109372119046692,
+        "strategyRewardsAPR": 0.1323755246277888,
         "rewardToken": {
           "address": "0x6E9C1F88a960fE63387eb4b71BC525a9313d8461",
           "symbol": "KAT",
@@ -279,12 +279,12 @@
         "status": "active",
         "netAPR": 0.0000018641439365083335,
         "details": {
-          "totalDebt": "19732182674615",
+          "totalDebt": "19538722556043",
           "totalLoss": "0",
           "totalGain": "0",
           "performanceFee": 0,
           "lastReport": 1751998977,
-          "debtRatio": 2754
+          "debtRatio": 2734
         },
         "strategyRewardsAPR": 0,
         "rewardToken": {
@@ -310,9 +310,9 @@
       "decimals": 6
     },
     "tvl": {
-      "totalAssets": "17041899519686",
-      "tvl": 17041814.310188398,
-      "price": 0.999995
+      "totalAssets": "17041909859704",
+      "tvl": 17041909.859704,
+      "price": 1
     },
     "apr": {
       "type": "v3:new_averaged",
@@ -334,7 +334,7 @@
       "extra": {
         "stakingRewardsAPR": null,
         "gammaRewardAPR": null,
-        "katanaRewardsAPR": 0.025527452585497913
+        "katanaRewardsAPR": 0.0308964474481259
       },
       "forwardAPR": {
         "type": "",
@@ -351,46 +351,12 @@
     },
     "strategies": [
       {
-        "address": "0xeeDbED5270791521969E1c693d81796b045dC483",
-        "name": "Single Sided Steer AUSD-vbUSDT vbUSDT",
-        "status": "unallocated",
-        "details": {
-          "totalDebt": "0",
-          "totalLoss": "0",
-          "totalGain": "0",
-          "performanceFee": 1000,
-          "lastReport": 1751921225
-        }
-      },
-      {
-        "address": "0xb2f33a48F79cbc9d3f9b32FDA0cBC89cF67af0AC",
-        "name": "Single Sided Steer LP vbUSDC-vbUSDT vbUSDT",
-        "status": "active",
-        "details": {
-          "totalDebt": "3978405234735",
-          "totalLoss": "0",
-          "totalGain": "0",
-          "performanceFee": 1000,
-          "lastReport": 1752093030,
-          "debtRatio": 2334
-        },
-        "strategyRewardsAPR": 0.109372119046692,
-        "rewardToken": {
-          "address": "0x6E9C1F88a960fE63387eb4b71BC525a9313d8461",
-          "symbol": "KAT",
-          "decimals": 18,
-          "assumedFDV": 1000000000
-        },
-        "underlyingContract": "0x5f88eeb3a5662489eb2d5da9f0c73f03355f3009",
-        "assumedFDV": 1000000000
-      },
-      {
         "address": "0x543CC24962b540430DD1121E83E8564770Da6810",
         "name": "Morpho Gauntlet USDT Vault Compounder",
         "status": "active",
         "netAPR": 1.1565450833333334e-10,
         "details": {
-          "totalDebt": "6455391973285",
+          "totalDebt": "6455287313298",
           "totalLoss": "0",
           "totalGain": "0",
           "performanceFee": 0,
@@ -429,6 +395,40 @@
         },
         "underlyingContract": "0x8ED68f91AfbE5871dCE31ae007a936ebE8511d47",
         "assumedFDV": 1000000000
+      },
+      {
+        "address": "0xeeDbED5270791521969E1c693d81796b045dC483",
+        "name": "Single Sided Steer AUSD-vbUSDT vbUSDT",
+        "status": "unallocated",
+        "details": {
+          "totalDebt": "0",
+          "totalLoss": "0",
+          "totalGain": "0",
+          "performanceFee": 1000,
+          "lastReport": 1751921225
+        }
+      },
+      {
+        "address": "0xb2f33a48F79cbc9d3f9b32FDA0cBC89cF67af0AC",
+        "name": "Single Sided Steer LP vbUSDC-vbUSDT vbUSDT",
+        "status": "active",
+        "details": {
+          "totalDebt": "3978405234735",
+          "totalLoss": "0",
+          "totalGain": "0",
+          "performanceFee": 1000,
+          "lastReport": 1752093030,
+          "debtRatio": 2334
+        },
+        "strategyRewardsAPR": 0.1323755246277888,
+        "rewardToken": {
+          "address": "0x6E9C1F88a960fE63387eb4b71BC525a9313d8461",
+          "symbol": "KAT",
+          "decimals": 18,
+          "assumedFDV": 1000000000
+        },
+        "underlyingContract": "0x5f88eeb3a5662489eb2d5da9f0c73f03355f3009",
+        "assumedFDV": 1000000000
       }
     ]
   },
@@ -444,9 +444,9 @@
       "decimals": 6
     },
     "tvl": {
-      "totalAssets": "3130576476521",
-      "tvl": 3130576.476521,
-      "price": 1
+      "totalAssets": "3131270157938",
+      "tvl": 3130027.0436852984,
+      "price": 0.999603
     },
     "apr": {
       "type": "v3:new_averaged",
@@ -468,7 +468,7 @@
       "extra": {
         "stakingRewardsAPR": null,
         "gammaRewardAPR": null,
-        "katanaRewardsAPR": 0.12353101144830848
+        "katanaRewardsAPR": 0.07159475137139178
       },
       "forwardAPR": {
         "type": "",
@@ -484,6 +484,29 @@
       }
     },
     "strategies": [
+      {
+        "address": "0xF7EDe5332c6b4A235be4aA3c019222CFe72e984F",
+        "name": "Morpho Gauntlet AUSD Vault Compounder",
+        "status": "active",
+        "netAPR": 1.0589680869499999e-7,
+        "details": {
+          "totalDebt": "1055080373548",
+          "totalLoss": "0",
+          "totalGain": "0",
+          "performanceFee": 0,
+          "lastReport": 1752168966,
+          "debtRatio": 3369
+        },
+        "strategyRewardsAPR": 0,
+        "rewardToken": {
+          "address": "",
+          "symbol": "",
+          "decimals": 0,
+          "assumedFDV": 1000000000
+        },
+        "underlyingContract": "0x9540441C503D763094921dbE4f13268E6d1d3B56",
+        "assumedFDV": 1000000000
+      },
       {
         "address": "0xC1Ec6d26902949Bf6cbb0c9859dbEAD1E87FB243",
         "name": "Morpho Steakhouse Prime AUSD Compounder",
@@ -531,7 +554,7 @@
           "lastReport": 1752183424,
           "debtRatio": 3194
         },
-        "strategyRewardsAPR": 0.3867595849978349,
+        "strategyRewardsAPR": 0.22415388657292354,
         "rewardToken": {
           "address": "0x6E9C1F88a960fE63387eb4b71BC525a9313d8461",
           "symbol": "KAT",
@@ -539,29 +562,6 @@
           "assumedFDV": 1000000000
         },
         "underlyingContract": "0x02cdd2dd00e1e0900ec03267cf16e6170ff7b05b",
-        "assumedFDV": 1000000000
-      },
-      {
-        "address": "0xF7EDe5332c6b4A235be4aA3c019222CFe72e984F",
-        "name": "Morpho Gauntlet AUSD Vault Compounder",
-        "status": "active",
-        "netAPR": 1.0589680869499999e-7,
-        "details": {
-          "totalDebt": "1055080373548",
-          "totalLoss": "0",
-          "totalGain": "0",
-          "performanceFee": 0,
-          "lastReport": 1752168966,
-          "debtRatio": 3370
-        },
-        "strategyRewardsAPR": 0,
-        "rewardToken": {
-          "address": "",
-          "symbol": "",
-          "decimals": 0,
-          "assumedFDV": 1000000000
-        },
-        "underlyingContract": "0x9540441C503D763094921dbE4f13268E6d1d3B56",
         "assumedFDV": 1000000000
       }
     ]
@@ -583,31 +583,31 @@
       "decimals": 18
     },
     "tvl": {
-      "totalAssets": "21910905399317533229817",
-      "tvl": 64351233.61252563,
-      "price": 2936.95
+      "totalAssets": "21872889231183961761450",
+      "tvl": 65712283.65946136,
+      "price": 3004.28
     },
     "apr": {
       "type": "v3:new_averaged",
-      "netAPR": -1.4059288594026822e-31,
+      "netAPR": -1.4937994131153498e-31,
       "fees": {
         "performance": 0.1,
         "management": 0
       },
       "points": {
-        "weekAgo": -1.4059288594026822e-31,
-        "monthAgo": -1.4059288594026822e-31,
-        "inception": -1.4059288594026822e-31
+        "weekAgo": -1.4937994131153498e-31,
+        "monthAgo": -1.4937994131153498e-31,
+        "inception": -1.4937994131153498e-31
       },
       "pricePerShare": {
-        "today": 1.0000000000000036,
+        "today": 1.0000000000000038,
         "weekAgo": 1,
         "monthAgo": 1
       },
       "extra": {
         "stakingRewardsAPR": null,
         "gammaRewardAPR": null,
-        "katanaRewardsAPR": 0.0019019612485297972
+        "katanaRewardsAPR": 0.0022660220597398124
       },
       "forwardAPR": {
         "type": "",
@@ -645,7 +645,7 @@
           "totalGain": "0",
           "performanceFee": 0,
           "lastReport": 1751998977,
-          "debtRatio": 5046
+          "debtRatio": 5055
         },
         "strategyRewardsAPR": 0,
         "rewardToken": {
@@ -667,9 +667,9 @@
           "totalGain": "0",
           "performanceFee": 1000,
           "lastReport": 1752081817,
-          "debtRatio": 68
+          "debtRatio": 69
         },
-        "strategyRewardsAPR": 0.2797001836073231,
+        "strategyRewardsAPR": 0.3284089941651902,
         "rewardToken": {
           "address": "0x6E9C1F88a960fE63387eb4b71BC525a9313d8461",
           "symbol": "KAT",
@@ -685,12 +685,12 @@
         "status": "active",
         "netAPR": 3.264747366666667e-10,
         "details": {
-          "totalDebt": "10704981187515103582902",
+          "totalDebt": "10666965019381532114535",
           "totalLoss": "0",
           "totalGain": "0",
           "performanceFee": 0,
           "lastReport": 1751998977,
-          "debtRatio": 4886
+          "debtRatio": 4877
         },
         "strategyRewardsAPR": 0,
         "rewardToken": {
