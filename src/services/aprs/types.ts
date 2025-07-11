@@ -9,11 +9,10 @@ export interface TokenBreakdown {
 }
 
 export interface RewardCalculatorResult {
+  strategyAddress: string;
   poolAddress: string;
-  tokenBreakdowns: Array<{
-    poolAddress: string;
-    breakdown: TokenBreakdown;
-  }>;
+  poolType: string; // e.g., 'morpho', 'steer'
+  breakdown: TokenBreakdown;
 }
 
 export interface APRCalculator {

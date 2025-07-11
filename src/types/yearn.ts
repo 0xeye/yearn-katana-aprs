@@ -7,18 +7,52 @@ export interface YearnStrategyDetails {
   debtRatio?: number;
 }
 
+export interface YearnRewardToken {
+  address: string;
+  symbol: string;
+  decimals: number;
+  assumedFDV?: number;
+}
+
 export interface YearnStrategy {
   address: string;
   name: string;
   status?: string;
   netAPR?: number;
+  strategyRewardsAPR?: number;
+  rewardToken?: YearnRewardToken;
+  underlyingContract?: string;
   details?: YearnStrategyDetails;
+}
+
+export interface YearnVaultExtra {
+  katanaRewardsAPR?: number;
+}
+
+export interface YearnVaultPricePerShare {
+  today: number;
+  weekAgo: number;
+  monthAgo: number;
+}
+
+export interface YearnVaultPoints {
+  weekAgo: number;
+  monthAgo: number;
+  inception: number;
+}
+
+export interface YearnVaultFees {
+  performance: number;
+  management: number;
 }
 
 export interface YearnVaultAPY {
   type: string;
-  net_apy: number;
-  staking_rewards_apr: number;
+  netAPR: number;
+  fees?: YearnVaultFees;
+  points?: YearnVaultPoints;
+  pricePerShare?: YearnVaultPricePerShare;
+  extra?: YearnVaultExtra;
 }
 
 export interface YearnVaultTVL {
@@ -41,7 +75,7 @@ export interface YearnVault {
   name: string;
   chainId: number;
   strategies: YearnStrategy[];
-  apy?: YearnVaultAPY;
+  apr?: YearnVaultAPY;
   tvl?: YearnVaultTVL;
   token?: YearnVaultToken;
 }

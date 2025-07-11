@@ -6,4 +6,5 @@ dist/
 coverage/
 .vscode/
 .idea/
+.prettierrc
 # vault-apr-data.json
